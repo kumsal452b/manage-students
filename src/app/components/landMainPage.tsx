@@ -34,6 +34,11 @@ export default function LandMainPage(props: Props) {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
   const drawerWidth = 240;
   const router=useRouter();
+  const theLoginKey = localStorage.getItem("isLoggedIn");
+  if (!theLoginKey) {
+    router.push("http://localhost:3000/login");
+    return
+  }
   const handleListItemClick: any = (
     index: number,
     event: React.MouseEvent<HTMLDivElement, MouseEvent>
@@ -144,6 +149,7 @@ export default function LandMainPage(props: Props) {
         <List>
           <ListItem key={"logout"} disablePadding onClick={()=>{
             router.push('http://localhost:3000/login')
+            localStorage.removeItem('isLoggedIn');
           }}>
             <ListItemButton>
               <ListItemIcon>

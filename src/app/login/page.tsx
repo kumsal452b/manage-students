@@ -8,8 +8,14 @@ function Login() {
   const router=useRouter();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const theLoginKey = localStorage.getItem("isLoggedIn");
+  if (theLoginKey) {
+    router.push("http://localhost:3000/home");
+    return
+  }
   const signIn=()=>{
     if(username===theUser && password===thePass){
+      localStorage.setItem('isLoggedIn','1');
       router.push('http://localhost:3000/home')
     }else{
       alert('Wrong password or username')
